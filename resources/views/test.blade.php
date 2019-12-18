@@ -5,6 +5,8 @@
 
 <ul>
 	@foreach($language as $item)
-		<li>{{ $item }}</li>
+		@if($item != 'JAVA')
+			<li>{{ $item }}</li>
+		@endif
 	@endforeach
 </ul>
