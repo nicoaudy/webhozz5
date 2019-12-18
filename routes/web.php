@@ -9,9 +9,11 @@
 Route::get('/', function () {
 	$message = "But Laravel is awesome 🔥";
 	$language = ['PHP', 'Javascript', 'JAVA', 'Python', 'Golang'];
+	$number = 10 * 5;
 	return view('test', [
 		'language' => $language,
-		'message' => $message
+		'message' => $message,
+		'number' => $number
 	]);
 });
 
