@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+
 class CategoryController extends Controller
 {
     public function index()
     {
-        $title = 'Category Page';
+		$title = 'Category Page';
+		$rows = Category::all();
         return view('category.index', [
             'title' => $title
         ]);
