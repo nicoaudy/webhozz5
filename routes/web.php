@@ -6,6 +6,9 @@
 // PUT/PATCH
 // DELETE
 
+Route::get('/category', 'CategoryController@index');
+Route::get('/category/create', 'CategoryController@create');
+
 Route::get('/', function () {
 	$message = "But Laravel is awesome 🔥";
 	$language = ['PHP', 'Javascript', 'JAVA', 'Python', 'Golang'];
