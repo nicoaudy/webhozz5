@@ -7,9 +7,9 @@ use App\Models\Category;
 class CategoryController extends Controller
 {
     public function index()
-    {
+	{
 		$title = 'Category Page';
-		$rows = Category::all();
+		$rows = Category::all(); // select * from categories
         return view('category.index', [
             'title' => $title
         ]);
@@ -21,5 +21,21 @@ class CategoryController extends Controller
 		return view('category.create', [
 			'title' => $title
 		]);
+	}
+
+	public function store()
+	{
+		// dapetin request dari form
+		// request()->all()
+
+		// insert ke database
+		// insert into categories a, b values a, b
+		Category::create([
+			'name' => request('name'),
+			'description' => request('description')
+		]);
+
+		// direct ke halaman index
+		return redirect('/category');
 	}
 }
