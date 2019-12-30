@@ -39,4 +39,35 @@ class CategoryController extends Controller
 		// direct ke halaman index
 		return redirect('/category');
 	}
+
+	public function edit($id)
+	{
+		$category = Category::where('id', $id)->first();
+		return view('category.edit', [
+			'category' => $category
+		]);
+	}
+
+	public function update($id)
+	{
+		$category = Category::where('id', $id)->first();
+		$category->update([
+			'name' => request('name'),
+			'description' => request('description')
+		]);
+
+		// direct ke halaman index
+		return redirect('/category');
+	}
+
+	public function destroy($id)
+	{
+		$category = Category::where('id', $id)->first();
+		$category->delete();
+
+		// direct ke halaman index
+		return redirect('/category');
+	}
+
+
 }

@@ -12,6 +12,12 @@ Route::get('/category', 'CategoryController@index');
 Route::get('/category/create', 'CategoryController@create');
 // Insert ke db
 Route::post('/category', 'CategoryController@store');
+// Show form Edit
+Route::get('/category/{id}/edit', 'CategoryController@edit');
+// Update ke db
+Route::put('/category/{id}', 'CategoryController@update');
+// Delete db
+Route::delete('/category/{id}', 'CategoryController@destroy');
 
 Route::get('/', function () {
 	$message = "But Laravel is awesome 🔥";
