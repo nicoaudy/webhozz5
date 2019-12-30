@@ -18,10 +18,12 @@
 			</thead>
 			<tbody>
 				@php
+					// ini buat bikin nomor urut
 					$num = 0;
 				@endphp
 				@foreach($categories as $item)
 				@php
+					// tambahin nomor urut setiap loop
 					$num++;
 				@endphp
 				<tr>
