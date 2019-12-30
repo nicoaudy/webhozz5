@@ -11,7 +11,8 @@ class CategoryController extends Controller
 		$title = 'Category Page';
 		$rows = Category::all(); // select * from categories
         return view('category.index', [
-            'title' => $title
+			'title' => $title,
+			'categories' => $rows
         ]);
 	}
 
