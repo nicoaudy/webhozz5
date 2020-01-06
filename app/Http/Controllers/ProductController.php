@@ -28,14 +28,15 @@ class ProductController extends Controller
         # upload file
         $image = request('image');
         $filename = $image->getClientOriginalName(); // filename yg bakal disimpen di table
-        $image->move(public_path('images/'), $image->getClientOriginalName());
+        $filenameRandom = \Str::random(20) . '.'. $image->getClientOriginalExtension();
+        $image->move(public_path('images/'), $filenameRandom);
 
         Product::create([
             'category_id' => request('category_id'),
             'name' => request('name'),
             'price' => request('price'),
             'description' => request('description'),
-            'image' => $filename
+            'image' => $filenameRandom
         ]);
 
         return redirect('/products');
