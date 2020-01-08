@@ -9,9 +9,9 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::all();
+        $rows = Product::all();
         return view('product.index', [
-            'products' => $products
+            'rows' => $rows
         ]);
     }
 
@@ -27,8 +27,7 @@ class ProductController extends Controller
     {
         # upload file
         $image = request('image');
-        $filename = $image->getClientOriginalName(); // filename yg bakal disimpen di table
-        $filenameRandom = \Str::random(20) . '.'. $image->getClientOriginalExtension();
+        $filenameRandom = \Str::random(20) . '.'. $image->getClientOriginalExtension(); //129192819281982.png
         $image->move(public_path('images/'), $filenameRandom);
 
         Product::create([
@@ -45,8 +44,13 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::where('id', $id)->first();
+        if (!$product) {
+            return abort(404);
+        }
+        $categories = Category::all();
         return view('product.edit', [
-            'product' => $product
+            'product' => $product,
+            'categories' => $categories
         ]);
     }
 
