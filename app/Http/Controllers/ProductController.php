@@ -9,9 +9,9 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $rows = Product::all();
+        $products = Product::all();
         return view('product.index', [
-            'rows' => $rows
+            'products' => $products
         ]);
     }
 
