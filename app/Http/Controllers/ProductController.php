@@ -25,10 +25,15 @@ class ProductController extends Controller
 
     public function store()
     {
-        # upload file
-        $image = request('image');
-        $filenameRandom = \Str::random(20) . '.'. $image->getClientOriginalExtension(); //129192819281982.png
-        $image->move(public_path('images/'), $filenameRandom);
+        $check = request()->hasFile('image');
+        if ($check) {
+            # upload file
+            $image = request('image');
+            $filenameRandom = \Str::random(20) . '.'. $image->getClientOriginalExtension(); //129192819281982.png
+            $image->move(public_path('images/'), $filenameRandom);
+        } else {
+            $filenameRandom = 'default.jpg';
+        }
 
         Product::create([
             'category_id' => request('category_id'),
@@ -57,23 +62,37 @@ class ProductController extends Controller
     public function update($id)
     {
         $product = Product::where('id', $id)->first();
+
+        $check = request()->hasFile('image');
+        if ($check) {
+            // delete file sebelumnya
+            unlink(public_path('images').'/'.$product->image); // delete file
+
+            // import data yg baru
+            $image = request('image');
+            $filenameRandom = \Str::random(20) . '.'. $image->getClientOriginalExtension(); //129192819281982.png
+            $image->move(public_path('images/'), $filenameRandom);
+        }
+
         $product->update([
             'category_id' => request('category_id'),
             'name' => request('name'),
             'price' => request('price'),
-            'description' => request('description')
+            'description' => request('description'),
+            'image' => $check ? $filenameRandom : $product->image
         ]);
 
         // direct ke halaman index
-        return redirect('/product');
+        return redirect('/products');
     }
 
     public function destroy($id)
     {
         $product = Product::where('id', $id)->first();
+        unlink(public_path('images').'/'.$product->image); // delete file
         $product->delete();
 
         // direct ke halaman index
-        return redirect('/product');
+        return redirect('/products');
     }
 }
