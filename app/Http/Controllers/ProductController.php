@@ -70,7 +70,7 @@ class ProductController extends Controller
 
             // import data yg baru
             $image = request('image');
-            $filenameRandom = \Str::random(20) . '.'. $image->getClientOriginalExtension(); //129192819281982.png
+            $filenameRandom = \Str::random(20) . '.' . $image->getClientOriginalExtension(); //129192819281982.png
             $image->move(public_path('images/'), $filenameRandom);
         }
 
