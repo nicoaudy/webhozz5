@@ -26,6 +26,9 @@ Route::middleware('auth')->group(function () {
     Route::resource('products', 'ProductController');
 
     Route::get('/home', 'HomeController@index')->name('home');
+
+    Route::resource('transaction', 'TransactionController');
+    Route::resource('transaction-detail', 'TransactionDetailController');
 });
 
 Route::get('about', function () {
