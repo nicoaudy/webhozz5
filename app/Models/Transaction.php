@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\TransactionDetail;
 use Illuminate\Database\Eloquent\Model;
 
 class Transaction extends Model
@@ -27,5 +28,8 @@ class Transaction extends Model
      */
     protected $fillable = ['user_id', 'total', 'status'];
 
-    
+    public function transactionDetails()
+    {
+        return $this->hasMany(TransactionDetail::class);
+    }
 }

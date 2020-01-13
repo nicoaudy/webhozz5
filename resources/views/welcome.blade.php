@@ -10,7 +10,10 @@
 				  <div class="card-body">
 					<h5 class="card-title">{{ $item->title }}</h5>
 					<p class="card-text">{{ $item->description }}</p>
-					<a href="#" class="btn btn-primary">Buy</a>
+					<form action="/add-to-cart/{{ $item->id }}" method="POST">
+						@csrf
+						<button type="submit" class="btn btn-primary">Add to cart</button>
+					</form>
 				  </div>
 				</div>
 			</div>

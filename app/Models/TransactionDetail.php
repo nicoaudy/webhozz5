@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Transaction;
 use Illuminate\Database\Eloquent\Model;
 
 class TransactionDetail extends Model
@@ -27,5 +28,8 @@ class TransactionDetail extends Model
      */
     protected $fillable = ['transaction_id', 'product_id', 'quantity', 'sub_total'];
 
-    
+    public function transaction()
+    {
+        return $this->belongsTo(Transaction::class);
+    }
 }

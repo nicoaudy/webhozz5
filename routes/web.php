@@ -29,6 +29,8 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('transaction', 'TransactionController');
     Route::resource('transaction-detail', 'TransactionDetailController');
+
+    Route::post('add-to-cart/{id}', 'CartController');
 });
 
 Route::get('about', function () {
