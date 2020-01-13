@@ -35,3 +35,7 @@ Route::get('/', function () {
 Route::get('about', function () {
     return 'from about';
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
