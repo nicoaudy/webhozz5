@@ -30,7 +30,7 @@
 				@endphp
 				<tr>
 					<td>{{ $num }}</td>
-					<td>{{ $item->category->name }}</td>
+					<td>{{ $item->category->name ?? null }}</td>
 					<td>{{ $item->name }}</td>
 					<td>{{ $item->price }}</td>
 					<td>{{ $item->description }}</td>
